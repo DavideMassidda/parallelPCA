@@ -12,7 +12,7 @@ Dependencies: psych<br>
 <br>
 USAGE<br>
 parallelPCA(x, iter = 1000, ordinal = FALSE, method = "random",
-            alpha = 0.05, standard = FALSE, plot = TRUE)
+            alpha = 0.05, standard = FALSE, plot = TRUE)<br>
 <br>
 ARGUMENTS<br>
 x: row data matrix.<br>
@@ -26,7 +26,7 @@ method: specifies if the parallel analysis must be performed using random data
 alpha: alpha level to calculate quantiles and confidence intervals.<br>
 standard: specifies if the data must be standardized.<br>
 plot: plots the scree test.<br>
-
+<br>
 VALUE<br>
 The function returns and object of class 'parpca', containing the slots:<br>
 @correlation: the type of correlation index used.<br>
