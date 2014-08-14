@@ -1,9 +1,9 @@
 # ------------------------------------------------------------------------------------------
 # PARALLEL PRINCIPAL COMPONENT ANALYSIS
-# Script version: 1.0
+# Script version: 2.0
 # Author: Davide Massidda
 # e-mail: davide.massidda@humandata.it
-# Date: June 11, 2013
+# Date: August 14, 2014
 # URL: http://www.insular.it, http://www.humandata.it
 # License: GPLv3
 # Description: this script provides the function parallelPCA, which performs a parallel
@@ -12,7 +12,7 @@
 # ------------------------------------------------------------------------------------------
 # USAGE
 # parallelPCA(x, iter = 1000, ordinal = FALSE, method = "random",
-#             alpha = 0.05, standard = FALSE, plot = TRUE)
+#             alpha = 0.05, standard = FALSE, plot = TRUE, FUN = eigen, ...)
 # ARGUMENTS
 # x: row data matrix.
 # iter: the number of iterations for parallel analysis.
@@ -25,6 +25,10 @@
 # alpha: alpha level to calculate quantiles and confidence intervals.
 # standard: specifies if the data must be standardized.
 # plot: plots the scree test.
+# FUN: function to calculate eigen values. From package psych, options are: principal
+#      (for Principal Component Analysis) and fa (for Exploratory Factor Analysis).
+# ...: optional arguments to be passed to FUN. When FUN=eigen, specifying symmetric=TRUE
+#      and only.values=TRUE can be helpful to reduce the system time.
 # VALUE
 # The function returns and object of class 'parpca', containing the slots:
 # @correlation: the type of correlation index used.
@@ -101,7 +105,7 @@ setMethod("plot","parpca",
     }
 )
 
-parallelPCA <- function(x,iter=1000,ordinal=FALSE,method="random",alpha=0.05,standard=FALSE,plot=TRUE)
+parallelPCA <- function(x,iter=1000,ordinal=FALSE,method="random",alpha=0.05,standard=FALSE,plot=TRUE,FUN=eigen,...)
 {
     x <- as.matrix(x)
     nRows <- dim(x)[1]
@@ -136,7 +140,7 @@ parallelPCA <- function(x,iter=1000,ordinal=FALSE,method="random",alpha=0.05,sta
         for(i in 1:iter) {
             xRand[[i]] <- matrix(NA,nrow=nRows,ncol=nComp)
             for(j in 1:nComp) xRand[[i]][,j] <- numGEN(nRows)
-            randLoad[i,] <- eigen(corFUN(xRand[[i]]),symmetric=TRUE,only.values=TRUE)$values
+            randLoad[i,] <- FUN(corFUN(xRand[[i]]),...)$values
         }
     } else {
         if(method=="perm") {
@@ -145,7 +149,7 @@ parallelPCA <- function(x,iter=1000,ordinal=FALSE,method="random",alpha=0.05,sta
             V <- c(x)
             for(i in 1:iter) {
                 xRand[[i]] <- matrix(V[sample(K,size=N,replace=FALSE)],nrow=nRows,ncol=nComp)
-                randLoad[i,] <- eigen(corFUN(xRand[[i]]),symmetric=TRUE,only.values=TRUE)$values
+                randLoad[i,] <- FUN(corFUN(xRand[[i]]),...)$values
             }
         }
     }

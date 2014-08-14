@@ -1,9 +1,9 @@
 PARALLEL PRINCIPAL COMPONENT ANALYSIS<br>
 <br>
-Script version: 1.0<br>
+Script version: 2.0<br>
 Author: Davide Massidda<br>
 e-mail: davide.massidda@humandata.it<br>
-Date: June 11, 2013<br>
+Date: August 14, 2014<br>
 URL: http://www.insular.it, http://www.humandata.it<br>
 License: GPLv3<br>
 Description: this script provides the function parallelPCA, which performs a parallel
@@ -12,7 +12,7 @@ Dependencies: psych<br>
 <br>
 USAGE<br>
 parallelPCA(x, iter = 1000, ordinal = FALSE, method = "random",
-            alpha = 0.05, standard = FALSE, plot = TRUE)<br>
+            alpha = 0.05, standard = FALSE, plot = TRUE, FUN = eigen, ...)<br>
 <br>
 ARGUMENTS<br>
 x: row data matrix.<br>
@@ -26,6 +26,10 @@ method: specifies if the parallel analysis must be performed using random data
 alpha: alpha level to calculate quantiles and confidence intervals.<br>
 standard: specifies if the data must be standardized.<br>
 plot: plots the scree test.<br>
+FUN: function to calculate eigen values. From package psych, options are: principal
+     (for Principal Component Analysis) and fa (for Exploratory Factor Analysis).<br>
+...: optional arguments to be passed to FUN. When FUN=eigen, specifying symmetric=TRUE
+     and only.values=TRUE can be helpful to reduce the system time.<br>
 <br>
 VALUE<br>
 The function returns and object of class 'parpca', containing the slots:<br>
