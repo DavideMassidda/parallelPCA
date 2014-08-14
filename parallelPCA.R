@@ -1,6 +1,6 @@
 # ------------------------------------------------------------------------------------------
 # PARALLEL PRINCIPAL COMPONENT ANALYSIS
-# Script version: 2.0
+# Script version: 2.1
 # Author: Davide Massidda
 # e-mail: davide.massidda@humandata.it
 # Date: August 14, 2014
@@ -11,7 +11,7 @@
 # Dependencies: psych
 # ------------------------------------------------------------------------------------------
 # USAGE
-# parallelPCA(x, iter = 1000, ordinal = FALSE, method = "random",
+# parallelPCA(x, iter = 1000, ordinal = FALSE, method = "perm",
 #             alpha = 0.05, standard = FALSE, plot = TRUE, FUN = eigen, ...)
 # ARGUMENTS
 # x: row data matrix.
@@ -105,7 +105,7 @@ setMethod("plot","parpca",
     }
 )
 
-parallelPCA <- function(x,iter=1000,ordinal=FALSE,method="random",alpha=0.05,standard=FALSE,plot=TRUE,FUN=eigen,...)
+parallelPCA <- function(x,iter=1000,ordinal=FALSE,method="perm",alpha=0.05,standard=FALSE,plot=TRUE,FUN=eigen,...)
 {
     x <- as.matrix(x)
     nRows <- dim(x)[1]
@@ -134,7 +134,7 @@ parallelPCA <- function(x,iter=1000,ordinal=FALSE,method="random",alpha=0.05,sta
     rowIndex <- 1:nRows
     xRand <- vector("list",iter)
     randLoad <- matrix(NA,ncol=nComp,nrow=iter)
-    eigenVal <- eigen(corFUN(x),symmetric=TRUE,only.values=TRUE)$values
+    eigenVal <- FUN(corFUN(x),...)$values
     colnames(randLoad) <- names(eigenVal) <- paste("c",1:nComp,sep="")
     if(method=="random") {
         for(i in 1:iter) {

@@ -1,6 +1,6 @@
 PARALLEL PRINCIPAL COMPONENT ANALYSIS<br>
 <br>
-Script version: 2.0<br>
+Script version: 2.1<br>
 Author: Davide Massidda<br>
 e-mail: davide.massidda@humandata.it<br>
 Date: August 14, 2014<br>
@@ -11,7 +11,7 @@ principal component analysis on the correlation matrix from continuous and ordin
 Dependencies: psych<br>
 <br>
 USAGE<br>
-parallelPCA(x, iter = 1000, ordinal = FALSE, method = "random",
+parallelPCA(x, iter = 1000, ordinal = FALSE, method = "perm",
             alpha = 0.05, standard = FALSE, plot = TRUE, FUN = eigen, ...)<br>
 <br>
 ARGUMENTS<br>
