@@ -1,9 +1,9 @@
 # ------------------------------------------------------------------------------------------
 # PARALLEL PRINCIPAL COMPONENT ANALYSIS
-# Script version: 2.1
+# Script version: 2.2
 # Author: Davide Massidda
 # e-mail: davide.massidda@humandata.it
-# Date: August 14, 2014
+# Date: February 29, 2016
 # URL: http://www.insular.it, http://www.humandata.it
 # License: GPLv3
 # Description: this script provides the function parallelPCA, which performs a parallel
@@ -14,7 +14,7 @@
 # parallelPCA(x, iter = 1000, ordinal = FALSE, method = "perm",
 #             alpha = 0.05, standard = FALSE, plot = TRUE, FUN = eigen, ...)
 # ARGUMENTS
-# x: row data matrix.
+# x: raw data matrix.
 # iter: the number of iterations for parallel analysis.
 # ordinal: specifies if the data matrix contains ordinal data. If ordinal data are
 #          present, tetrachoric or polycoric correlations are used instead of the
