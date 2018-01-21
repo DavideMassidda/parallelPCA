@@ -1,7 +1,7 @@
-Warning: the R function <i>parallelPCA</i> contained in this script is deprecated. Use the function <i>parallel</i> contained in the package <a href="https://github.com/DavideMassidda/parpca" tile="the testing package for R">testing<a> instead.
+Warning: the R function <i>parallelPCA</i> contained in this script is deprecated. Use the function <i>parallel</i> contained in the package <a href="https://github.com/DavideMassidda/testing" tile="the testing package for R">testing<a> instead.
 
-PARALLEL PRINCIPAL COMPONENT ANALYSIS<br>
-<br>
+### PARALLEL PRINCIPAL COMPONENT ANALYSIS
+
 Script version: 2.1<br>
 Author: Davide Massidda<br>
 e-mail: davide.massidda@humandata.it<br>
